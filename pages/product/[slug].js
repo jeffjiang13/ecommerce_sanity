@@ -25,7 +25,7 @@ const ProductDetails = ({ product, products }) => {
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
-              <img 
+              <img
                 key={i}
                 src={urlFor(item)}
                 className={i === index ? 'small-image selected-image' : 'small-image'}
@@ -92,7 +92,7 @@ export const getStaticPaths = async () => {
   const products = await client.fetch(query);
 
   const paths = products.map((product) => ({
-    params: { 
+    params: {
       slug: product.slug.current
     }
   }));
@@ -106,7 +106,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug }}) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]'
-  
+
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
