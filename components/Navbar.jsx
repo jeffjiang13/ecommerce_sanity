@@ -1,18 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { AiOutlineShopping } from 'react-icons/ai'
-
+import Image from 'next/image';
+import { AiOutlineShopping } from 'react-icons/ai';
+import { logo } from '../public/assets';
 import { Cart } from './';
-import { useStateContext} from '../context/StateContext';
+import { useStateContext } from '../context/StateContext';
 
 const Navbar = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   return (
     <div className="navbar-container">
-      <p className="logo">
-        <Link href="/">Sound Store</Link>
-      </p>
+      <Link href="/">
+        <a className="logo" style={{ fontSize: '36px', position: 'relative' }}>
+          <Image src={logo} alt='logo' width={45} height={45}/>
+          <span style={{ position: 'absolute', top: '-1px' }}>Store</span>
+        </a>
+      </Link>
 
       <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
         <AiOutlineShopping />
@@ -21,7 +25,7 @@ const Navbar = () => {
 
       {showCart && <Cart />}
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
